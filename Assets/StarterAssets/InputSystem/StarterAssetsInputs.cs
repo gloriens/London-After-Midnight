@@ -19,6 +19,10 @@ namespace StarterAssets
 		[Header("Mouse Cursor Settings")]
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
+		
+		[Header("Custom Inputs")]
+		public bool attack;
+		public bool interact;
 
 #if ENABLE_INPUT_SYSTEM
 		public void OnMove(InputValue value)
@@ -42,6 +46,16 @@ namespace StarterAssets
 		public void OnSprint(InputValue value)
 		{
 			SprintInput(value.isPressed);
+		}
+		
+		public void OnAttack(InputValue value)
+		{
+			AttackInput(value.isPressed);
+		}
+
+		public void OnInteract(InputValue value)
+		{
+			InteractInput(value.isPressed);
 		}
 #endif
 
@@ -74,6 +88,16 @@ namespace StarterAssets
 		private void SetCursorState(bool newState)
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+		}
+		
+		public void AttackInput(bool newState)
+		{
+			attack = newState;
+		}
+
+		public void InteractInput(bool newState)
+		{
+			interact = newState;
 		}
 	}
 	
